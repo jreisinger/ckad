@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: test-cronjob
+  labels:
+    what: ckad
+spec:
+  jobTemplate:
+    metadata:
+      name: test-cronjob
+    spec:
+      template:
+        spec:
+          containers:
+          - image: busybox
+            name: test-cronjob
+            args:
+              - /bin/sh
+              - -c
+              - date; echo hello from a cronjob
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
