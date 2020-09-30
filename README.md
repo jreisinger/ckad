@@ -20,6 +20,12 @@ kubectl apply -f -
 kubectl label cm variables what=ckad
 ```
 
+```
+kubectl create cm nginx-cm --from-file nginx-custom-config.conf --dry-run -o yaml | \
+kubectl apply -f -
+kubectl label cm nginx-cm what=ckad
+```
+
 ## Clean up
 
 ```
