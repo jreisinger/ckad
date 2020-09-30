@@ -2,3 +2,4 @@
 set -x
 kubectl delete all -l what=ckad
 kubectl delete ing -l what=ckad
+kubectl delete cm -l what=ckad
