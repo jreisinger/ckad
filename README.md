@@ -29,7 +29,7 @@ kubectl label cm nginx-cm what=ckad
 ## Clean up
 
 ```
-./cleanup.sh
+runp cleanup.txt
 ```
 
 ## More
