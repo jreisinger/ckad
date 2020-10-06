@@ -4,7 +4,7 @@ metadata:
   labels:
     run: app
     what: ckad
-  name: app
+  name: adapter-pattern
 spec:
   containers:
   - image: busybox
