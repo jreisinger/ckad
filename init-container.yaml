@@ -1,0 +1,30 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: init-cont
+  labels:
+    what: ckad
+spec:
+  initContainers:
+    - name: configurer
+      image: busybox
+      command:
+        - "wget"
+        - "-O"
+        - "/usr/shared/app/config.json"
+        - "https://raw.githubusercontent.com/bmuschko/ckad-crash-course/master/exercises/07-creating-init-container/app/config/config.json"
+      volumeMounts:
+        - mountPath: /usr/shared/app
+          name: app
+  containers:
+    - name: web
+      image: bmuschko/nodejs-read-config:1.0.0
+      ports:
+        - containerPort: 8080
+      volumeMounts:
+        - mountPath: /usr/shared/app
+          name: app
+  volumes:
+    - name: app
+      emptyDir: {}
+

@@ -35,3 +35,4 @@ runp cleanup.txt
 ## More
 
 * https://github.com/sandervanvugt/ckad/
+* https://github.com/bmuschko/ckad-crash-course
