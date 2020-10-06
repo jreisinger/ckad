@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-pod
+  labels:
+    what: ckad
+spec:
+  containers:
+    - name: web # doesn't really matter
+      image: nginx
+      ports:
+        - name: web
+          containerPort: 80
+      readinessProbe:
+        httpGet:
+          port: 80
