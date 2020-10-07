@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ckad-ns2
+  labels:
+    what: ckad
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: ckad-ns2
+  name: alpine-pod
+  labels:
+    what: ckad
+data:
+  localport: "localhost:8082"
+  external_url: "linux.com"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: ckad-ns2
+  labels:
+    app: alpine-pod
+    what: ckad
+  name: alpine-pod
+spec:
+  containers:
+  - image: alpine
+    name: alpine
+    command:
+    - /bin/sh
+    - -c
+    - env
+    env:
+    - name: localport
+      valueFrom:
+        configMapKeyRef:
+          name: alpine-pod
+          key: localport
+    - name: external_url
+      valueFrom:
+        configMapKeyRef:
+          name: alpine-pod
+          key: external_url
