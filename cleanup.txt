@@ -1,4 +1,4 @@
-kubectl delete all -l what=ckad
-kubectl delete ing -l what=ckad
-kubectl delete cm -l what=ckad
-kubectl delete secret -l what=ckad
+kubectl delete all -l what=ckad -A
+kubectl delete ing -l what=ckad -A
+kubectl delete cm -l what=ckad -A
+kubectl delete secret -l what=ckad -A
