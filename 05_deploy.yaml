@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ckad-ns5
+  labels:
+    what: ckad
+    service: nginx
+  name: test
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: webshop
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webshop
+    spec:
+      containers:
+      - image: nginx:1.8
+        name: nginx
