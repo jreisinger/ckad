@@ -1,0 +1,46 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: 1312-pv
+  labels:
+    type: local
+    what: ckad
+  namespace: ckad-1312
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/lab1312"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pv-claim
+  namespace: ckad-1312
+  labels:
+    what: ckad
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: 1312-pod
+  namespace: ckad-1312
+spec:
+  volumes:
+    - name: pvst
+      persistentVolumeClaim:
+        claimName: pv-claim
+  containers:
+    - name: pv-lab1312
+      image: nginx
+      volumeMounts:
+        - mountPath: "/webdata"
+          name: pvst

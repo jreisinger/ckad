@@ -1,6 +1,9 @@
-kubectl delete all -l what=ckad -A
 kubectl delete ing -l what=ckad -A
 kubectl delete cm -l what=ckad -A
 kubectl delete secret -l what=ckad -A
 kubectl delete netpol -l what=ckad -A
+kubectl delete pv -l what=ckad -A
+kubectl delete pvc -l what=ckad -A
+kubectl delete pod -l what=ckad -A
+kubectl delete all -l what=ckad -A
 #kubectl delete ns -l what=ckad -A
